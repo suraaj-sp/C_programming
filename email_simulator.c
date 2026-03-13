@@ -27,7 +27,7 @@ void sendEmail(){
 	getchar();
 
 	printf("Subject:"); fgets(e.subject,MAX,stdin);
-	printf("Body:"); fgets(e.body,MAX,stdin);
+	printf("Body:"); fgets(e.body,500,stdin);
 
 	fprintf(fptr, "From:%s | To:%s | Subject:%s | Body:%s",e.sender,e.reciever,e.subject,e.body);
 
@@ -36,8 +36,8 @@ void sendEmail(){
 
 }
 void viewInbox(){
-	char buffer[1000];
-	char searchuser[MAX];
+	char buffer[10000];
+	char searchUser[MAX];
 	FILE *fptr = fopen("Mails.txt","r");
 
 	if (fptr == NULL){
@@ -46,11 +46,11 @@ void viewInbox(){
 	}
 
 	printf("Enter username to search:");
-	scanf("%s", searchuser);
+	scanf("%s", searchUser);
 	
-	printf("Details:");
-	while(fgets(buffer,1000,fptr)){
-		if(strstr(buffer,searchuser) != NULL){
+	printf("Details:\n");
+	while(fgets(buffer,10000,fptr)){
+		if(strstr(buffer,searchUser) != NULL){
 			printf("%s",buffer);
 		}
 	}
